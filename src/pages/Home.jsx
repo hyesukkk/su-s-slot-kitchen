@@ -19,7 +19,6 @@ const Home = () => {
         <button className="howto_button" onClick={() => setIsHowtoOpen(true)}>
           게임방법
         </button>
-        <h1>gamePage 연습이에욧!!!</h1>
       </section>
 
       {isHowtoOpen && (
