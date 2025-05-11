@@ -19,6 +19,7 @@ const Home = () => {
         <button className="howto_button" onClick={() => setIsHowtoOpen(true)}>
           게임방법
         </button>
+        <h3>추가햇음</h3>
       </section>
 
       {isHowtoOpen && (
