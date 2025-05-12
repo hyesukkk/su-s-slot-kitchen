@@ -24,25 +24,26 @@ const Game = () => {
 
   return (
     <div className="Game">
-      {/* 슬롯 박스 + 핸들 */}
       <div className="slot-container">
-        <img className="slot-box" src="/assets/slot_box.png" alt="슬롯박스" />
+        {/* 슬롯박스만 감싸는 래퍼 */}
+        <div className="slot-box-wrapper">
+          <img className="slot-box" src="/assets/slot_box.png" alt="슬롯박스" />
+
+          {/* 화살표도 여기에 넣기 */}
+          <img
+            className="arrow"
+            src="/assets/arrow.png"
+            alt="화살표"
+            style={{
+              left: `${slotIndex * 20 + 10}%`, // 5칸 기준 중앙 위치
+            }}
+          />
+        </div>
+
+        {/* 핸들은 밖에 두기 */}
         <button className="handle" onClick={handleStop}>
           <img src="/assets/handle.png" alt="핸들" />
         </button>
-
-        <img
-          className="arrow"
-          src="/assets/arrow.png"
-          alt="화살표"
-          style={{
-            left: `${slotIndex * 16 + 18}%`,
-            // position: "absolute",
-            // bottom: "-20px",
-            // transform: "translateX(-50%)",
-            // transition: "left 0.2s ease",
-          }}
-        />
       </div>
 
       {/* 카트 */}
