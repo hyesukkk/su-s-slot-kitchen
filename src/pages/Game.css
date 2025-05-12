@@ -10,10 +10,11 @@
 
 /* 슬롯 박스 + 핸들 */
 .slot-container {
+  position: relative; /*화살표의 기준 */
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0;
+  /* gap: 0; */
 }
 
 .slot-box {
@@ -33,17 +34,12 @@
 }
 
 /* 화살표 */
-.arrow-container {
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 10%;
-  margin-top: 20px;
-  position: relative; /* ✅ 화살표의 absolute 기준 */
-  height: 50px; /* 높이 공간 확보 */
-}
-
 .arrow {
+  position: absolute;
+  bottom: 17px; /* 슬롯박스 이미지 하단선에 딱 붙도록 조절 */
+  transform: translateX(-50%);
   width: 70px;
+  transition: left 0.2s ease;
 }
 
 /* 카트 */

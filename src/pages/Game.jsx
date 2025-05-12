@@ -30,20 +30,17 @@ const Game = () => {
         <button className="handle" onClick={handleStop}>
           <img src="/assets/handle.png" alt="핸들" />
         </button>
-      </div>
 
-      {/* 화살표 */}
-      <div className="arrow-container">
         <img
           className="arrow"
           src="/assets/arrow.png"
           alt="화살표"
           style={{
             left: `${slotIndex * 16 + 18}%`,
-            position: "absolute",
-            bottom: "-20px",
-            transform: "translateX(-50%)",
-            transition: "left 0.2s ease",
+            // position: "absolute",
+            // bottom: "-20px",
+            // transform: "translateX(-50%)",
+            // transition: "left 0.2s ease",
           }}
         />
       </div>
