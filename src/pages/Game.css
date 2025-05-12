@@ -1,0 +1,59 @@
+.Game {
+  width: 90vw;
+  aspect-ratio: 1 / 1;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  background-color: #fdf6dc;
+  padding-top: 40px;
+}
+
+/* 슬롯 박스 + 핸들 */
+.slot-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.slot-box {
+  width: 85%;
+}
+
+.handle {
+  background: none;
+  border: none;
+  margin-left: -55px; /* 슬롯박스 오른쪽에 살짝 겹쳐보이게 */
+  padding: 0;
+  cursor: pointer;
+}
+
+.handle img {
+  width: 150px;
+}
+
+/* 화살표 */
+.arrow-container {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10%;
+  margin-top: 20px;
+  position: relative; /* ✅ 화살표의 absolute 기준 */
+  height: 50px; /* 높이 공간 확보 */
+}
+
+.arrow {
+  width: 70px;
+}
+
+/* 카트 */
+.cart-container {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cart {
+  width: 330px;
+}
