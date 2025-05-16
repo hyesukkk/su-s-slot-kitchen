@@ -1,7 +1,17 @@
 import "./Game.css";
 import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // import 추가
+
 
 const Game = () => {
+  const navigate = useNavigate();
+  const foodImages = [
+    Object.values(import.meta.glob('/public/assets/food/round1/*.png', { eager: true, as: 'url' })),
+    Object.values(import.meta.glob('/public/assets/food/round2/*.png', { eager: true, as: 'url' })),
+    Object.values(import.meta.glob('/public/assets/food/round3/*.png', { eager: true, as: 'url' })),
+    Object.values(import.meta.glob('/public/assets/food/round4/*.png', { eager: true, as: 'url' }))
+  ];
+  const [round, setRound] = useState(0);
   const [slotIndex, setSlotIndex] = useState(0); // 현재 화살표 위치 (0~4)
   const [isRunning, setIsRunning] = useState(true); // 애니메이션 실행 여부
 
@@ -56,10 +66,25 @@ const Game = () => {
     };
   }, [isRunning]);
 
+  const nextRound=()=>{
+    if(round===3){
+      navigate("/"); 
+      return;
+    }
+    setRound(round => (round + 1));
+      
+    setIsRunning(true); 
+  }
+
   // 핸들 클릭 시 애니메이션 정지
   const handleStop = () => {
     setIsRunning(false);
+    //2초뒤 다음 라운드로 변경
+    setTimeout(() => {
+    nextRound(); 
+  }, 2000); 
   };
+
 
   return (
     <div className="Game">
@@ -67,7 +92,18 @@ const Game = () => {
         {/* 슬롯박스만 감싸는 래퍼 */}
         <div className="slot-box-wrapper" ref={wrapperRef}>
           <img className="slot-box" src="/assets/slot_box.png" alt="슬롯박스" />
-
+            {foodImages[round].map((src, idx) => (
+    <img src={src}
+      style={{
+        position: 'absolute',
+        top: '45%',
+        left: `${(idx + 1.1) * (65 / foodImages.length)}%`,
+        transform: 'translate(-50%, -50%)',
+        width: '65px',
+        height: '65px',
+      }}
+    />
+  ))}
           {/* 화살표 */}
           <img
             className="arrow"
