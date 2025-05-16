@@ -1,5 +1,4 @@
 import "./Home.css";
-import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -10,7 +9,7 @@ const Home = () => {
   return (
     <div className="Home">
       <section className="logo">
-        <img src={logo} alt="Logo" style={{ width: "350px", height: "auto" }} />
+        <img src={"/assets/main/logo.png"} alt="Logo" style={{ width: "350px", height: "auto" }} />
       </section>
       <section className="button_section">
         <button className="start_button" onClick={() => nav("/game")}>
