@@ -1,7 +1,7 @@
-import "./Game.css";
+import "../../styles/Game.css";
 import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom"; // import 추가
-
+import { useNavigate } from "react-router-dom";
+import { foodList } from "../../constants/food";
 
 const Game = () => {
   const navigate = useNavigate();
@@ -14,6 +14,8 @@ const Game = () => {
   const [round, setRound] = useState(0);
   const [slotIndex, setSlotIndex] = useState(0); // 현재 화살표 위치 (0~4)
   const [isRunning, setIsRunning] = useState(true); // 애니메이션 실행 여부
+  const [selectedFoods, setSelectedFoods] = useState([]);
+  const [clickable, setClickable] = useState(true); // 버튼 클릭 가능 여부
 
   const wrapperRef = useRef(null);
 
@@ -72,17 +74,32 @@ const Game = () => {
       return;
     }
     setRound(round => (round + 1));
-      
     setIsRunning(true); 
   }
 
+    // 선택된 음식의 food 객체 찾기
+    const findFoodObject = (imagePath) => {
+      const fileName = imagePath.split('/').pop().split('.')[0];    //이름추출
+      return foodList.find(food => food.name === fileName);//음식 찾기
+    };
+  
+
   // 핸들 클릭 시 애니메이션 정지
   const handleStop = () => {
+    if (!clickable) return;
+    setClickable(false);   
+
     setIsRunning(false);
-    //2초뒤 다음 라운드로 변경
+    
+    //음식 선택
+    const selectedImage = foodImages[round][slotIndex];
+    const selectedFood = findFoodObject(selectedImage);
+    setSelectedFoods(prev => [...prev, selectedFood]);
+    // 2초 뒤 다음 라운드로 변경
     setTimeout(() => {
-    nextRound(); 
-  }, 2000); 
+      nextRound();
+      setClickable(true);
+    }, 2000);
   };
 
 
@@ -93,17 +110,19 @@ const Game = () => {
         <div className="slot-box-wrapper" ref={wrapperRef}>
           <img className="slot-box" src="/assets/slot_box.png" alt="슬롯박스" />
             {foodImages[round].map((src, idx) => (
-    <img src={src}
-      style={{
-        position: 'absolute',
-        top: '45%',
-        left: `${(idx + 1.1) * (65 / foodImages.length)}%`,
-        transform: 'translate(-50%, -50%)',
-        width: '65px',
-        height: '65px',
-      }}
-    />
-  ))}
+              <img 
+                key={idx}
+                src={src}
+                style={{
+                  position: 'absolute',
+                  top: '45%',
+                  left: `${(idx + 1.1) * (65 / foodImages.length)}%`,
+                  transform: 'translate(-50%, -50%)',
+                  width: '65px',
+                  height: '65px',
+                }}
+              />
+            ))}
           {/* 화살표 */}
           <img
             className="arrow"
@@ -117,7 +136,7 @@ const Game = () => {
         </div>
 
         {/* 핸들 */}
-        <button className="handle" onClick={handleStop}>
+        <button className="handle" onClick={handleStop} disabled={!clickable} >
           <img src="/assets/handle.png" alt="핸들" />
         </button>
       </div>
@@ -125,6 +144,18 @@ const Game = () => {
       {/* 카트 */}
       <div className="cart-container">
         <img className="cart" src="/assets/cart.png" alt="카트" />
+        <div className="selected-foods">
+          {selectedFoods.map((food, index) => (
+            <img 
+              src={`/public/assets/food/round${index+1}/${food.name}.png`}
+              style={{
+                width: '50px',
+                height: '50px',
+                margin: '5px'
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

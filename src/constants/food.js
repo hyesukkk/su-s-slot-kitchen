@@ -33,3 +33,5 @@ const foodList = [
 function foodInit(){
     const List=[];
 }
+
+export { foodList, completeFoodList };
