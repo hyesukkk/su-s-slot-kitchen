@@ -147,6 +147,7 @@ const Game = () => {
         <div className="selected-foods">
           {selectedFoods.map((food, index) => (
             <img 
+              key={`${food.name}-${index}`}
               src={`/public/assets/food/round${index+1}/${food.name}.png`}
               style={{
                 width: '50px',
