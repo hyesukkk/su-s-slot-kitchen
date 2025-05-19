@@ -7,7 +7,7 @@
   margin: 0 auto;
   flex-direction: column;
 
-  background-image: url("../assets/main.png");
+  background-image: url("/assets/main/main.png");
   background-size: cover; /* 이미지가 요소를 완전히 덮도록 조정 */
   background-repeat: no-repeat; /* 이미지가 반복되지 않도록 설정 */
   background-position: center; /* 이미지가 중앙에 위치하도록 설정 */
