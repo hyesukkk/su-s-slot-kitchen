@@ -45,6 +45,7 @@ const Game = () => {
   const directionRef = useRef(1); // 1: 오른쪽, -1: 왼쪽
 
   const [arrowLeft, setArrowLeft] = useState("0px");
+  const handleRef = useRef(null);
 
   useEffect(() => {
     const updateArrowPosition = (index) => {
@@ -122,6 +123,14 @@ const Game = () => {
     if (!clickable) return;
     setClickable(false);
 
+    // 레버 살짝 움직이게 active 클래스 추가
+    if (handleRef.current) {
+      handleRef.current.classList.add("active");
+      setTimeout(() => {
+        handleRef.current.classList.remove("active");
+      }, 300); // 0.3초 뒤에 원래대로
+    }
+
     setIsRunning(false);
 
     //음식 선택
@@ -168,7 +177,12 @@ const Game = () => {
         </div>
 
         {/* 핸들 */}
-        <button className="handle" onClick={handleStop} disabled={!clickable}>
+        <button
+          className="handle"
+          onClick={handleStop}
+          disabled={!clickable}
+          ref={handleRef}
+        >
           <img src="/assets/handle.png" alt="핸들" />
         </button>
       </div>

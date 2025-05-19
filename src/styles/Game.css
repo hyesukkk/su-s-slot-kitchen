@@ -32,6 +32,12 @@
   margin-top: 50px;
   padding: 0;
   cursor: pointer;
+  transition: transform 0.2s ease;
+  transform-origin: bottom center;
+}
+
+.handle.active {
+  transform: rotate(-20deg); /* 살짝 위로 기울이기 */
 }
 
 .handle img {
