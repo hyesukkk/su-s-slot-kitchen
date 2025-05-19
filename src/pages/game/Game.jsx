@@ -175,20 +175,20 @@ const Game = () => {
 
       {/* 카트 */}
       <div className="cart-container">
-        <img className="cart" src="/assets/cart.png" alt="카트" />
         <div className="selected-foods">
           {selectedFoods.map((food, index) => (
             <img
               key={`${food.name}-${index}`}
               src={`/public/assets/food/round${index + 1}/${food.name}.png`}
               style={{
-                width: "50px",
-                height: "50px",
+                width: "70px",
+                height: "70px",
                 margin: "5px",
               }}
             />
           ))}
         </div>
+        <img className="cart" src="/assets/cart.png" alt="카트" />
       </div>
     </div>
   );

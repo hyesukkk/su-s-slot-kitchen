@@ -5,7 +5,7 @@
   margin: 0 auto;
   position: relative;
   background-color: #fdf6dc;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .slot-container {
@@ -13,6 +13,7 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
+  margin-bottom: 10px;
 }
 
 .slot-box-wrapper {
@@ -50,8 +51,9 @@
   bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
+  margin-top: 00px;
 }
 
 .cart {
-  width: 330px;
+  width: 380px;
 }
