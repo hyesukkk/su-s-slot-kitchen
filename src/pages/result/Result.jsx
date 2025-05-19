@@ -16,7 +16,7 @@ const Result = () => {
       <h1 className="title">음식 평가</h1>
 
       <div className="result-content">
-        {/* 왼쪽 결과 이미지 */}
+        {/* 왼쪽 결과 이미지+점수 */}
         <div className="result-left">
           <img className="result-image" src={resultImage} alt={resultFood} />
           <div className="score-section">
@@ -24,7 +24,7 @@ const Result = () => {
           </div>
         </div>
 
-        {/* 오른쪽: 재료, 점수, 버튼 */}
+        {/* 오른쪽: 재료 + 버튼 */}
         <div className="result-right">
           <div className="materials">
             <h3>사용한 재료</h3>
@@ -33,7 +33,6 @@ const Result = () => {
                 <img
                   key={idx}
                   src={`/assets/food/round${idx + 1}/${food.name}.png`}
-                  style={{ width: "80px", height: "80px", margin: "10px" }}
                   alt={food.name}
                   className="material-icon"
                 />
