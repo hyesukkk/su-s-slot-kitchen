@@ -95,8 +95,8 @@ const Game = () => {
       const selectedFood = findFoodObject(selectedImage);
       const updatedFoods = [...selectedFoods, selectedFood];
 
-      const resultFood = calculateResult(updatedFoods);
-      const score = resultFood === "trash" ? 0 : updatedFoods.length;
+      const { resultFood, score } = calculateResult(updatedFoods);
+      // const score = resultFood === "trash" ? 0 : updatedFoods.length;
 
       navigate("/result", {
         state: {

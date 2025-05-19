@@ -13,8 +13,6 @@ export function calculateResult(selectedFoods) {
   const maxScore = Math.max(...scores);
   const maxIndex = scores.indexOf(maxScore);
 
-  const isPerfect = maxScore === selectedFoods.length;
-
   const imageNameMap = {
     ramen: "ramen",
     kimbap: "gimbap",
@@ -23,9 +21,15 @@ export function calculateResult(selectedFoods) {
     bingsu: "bingsu",
   };
 
+  const isPerfect = maxScore === selectedFoods.length;
   const resultFood = isPerfect
     ? imageNameMap[completeFoodList[maxIndex]]
     : "trash";
 
-  return resultFood;
+  const score =
+    selectedFoods.length > 0
+      ? Math.round((maxScore / selectedFoods.length) * 100)
+      : 0;
+
+  return { resultFood, score };
 }
