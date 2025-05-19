@@ -2,14 +2,35 @@ import "../../styles/Game.css";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { foodList } from "../../constants/food";
+import { calculateResult } from "../../constants/calculateResult";
 
 const Game = () => {
   const navigate = useNavigate();
   const foodImages = [
-    Object.values(import.meta.glob('/public/assets/food/round1/*.png', { eager: true, as: 'url' })),
-    Object.values(import.meta.glob('/public/assets/food/round2/*.png', { eager: true, as: 'url' })),
-    Object.values(import.meta.glob('/public/assets/food/round3/*.png', { eager: true, as: 'url' })),
-    Object.values(import.meta.glob('/public/assets/food/round4/*.png', { eager: true, as: 'url' }))
+    Object.values(
+      import.meta.glob("/public/assets/food/round1/*.png", {
+        eager: true,
+        as: "url",
+      })
+    ),
+    Object.values(
+      import.meta.glob("/public/assets/food/round2/*.png", {
+        eager: true,
+        as: "url",
+      })
+    ),
+    Object.values(
+      import.meta.glob("/public/assets/food/round3/*.png", {
+        eager: true,
+        as: "url",
+      })
+    ),
+    Object.values(
+      import.meta.glob("/public/assets/food/round4/*.png", {
+        eager: true,
+        as: "url",
+      })
+    ),
   ];
   const [round, setRound] = useState(0);
   const [slotIndex, setSlotIndex] = useState(0); // 현재 화살표 위치 (0~4)
@@ -68,33 +89,40 @@ const Game = () => {
     };
   }, [isRunning]);
 
-  const nextRound=()=>{
-    if(round===3){
-      navigate("/"); 
+  const nextRound = () => {
+    if (round === 3) {
+      const selectedImage = foodImages[round][slotIndex];
+      const selectedFood = findFoodObject(selectedImage);
+      const updatedFoods = [...selectedFoods, selectedFood];
+
+      navigate("/result", {
+        state: {
+          selectedFoods: updatedFoods,
+        },
+      });
       return;
     }
-    setRound(round => (round + 1));
-    setIsRunning(true); 
-  }
+    setRound((round) => round + 1);
+    setIsRunning(true);
+  };
 
-    // 선택된 음식의 food 객체 찾기
-    const findFoodObject = (imagePath) => {
-      const fileName = imagePath.split('/').pop().split('.')[0];    //이름추출
-      return foodList.find(food => food.name === fileName);//음식 찾기
-    };
-  
+  // 선택된 음식의 food 객체 찾기
+  const findFoodObject = (imagePath) => {
+    const fileName = imagePath.split("/").pop().split(".")[0]; //이름추출
+    return foodList.find((food) => food.name === fileName); //음식 찾기
+  };
 
   // 핸들 클릭 시 애니메이션 정지
   const handleStop = () => {
     if (!clickable) return;
-    setClickable(false);   
+    setClickable(false);
 
     setIsRunning(false);
-    
+
     //음식 선택
     const selectedImage = foodImages[round][slotIndex];
     const selectedFood = findFoodObject(selectedImage);
-    setSelectedFoods(prev => [...prev, selectedFood]);
+    setSelectedFoods((prev) => [...prev, selectedFood]);
     // 2초 뒤 다음 라운드로 변경
     setTimeout(() => {
       nextRound();
@@ -102,27 +130,26 @@ const Game = () => {
     }, 2000);
   };
 
-
   return (
     <div className="Game">
       <div className="slot-container">
         {/* 슬롯박스만 감싸는 래퍼 */}
         <div className="slot-box-wrapper" ref={wrapperRef}>
           <img className="slot-box" src="/assets/slot_box.png" alt="슬롯박스" />
-            {foodImages[round].map((src, idx) => (
-              <img 
-                key={idx}
-                src={src}
-                style={{
-                  position: 'absolute',
-                  top: '45%',
-                  left: `${(idx + 1.1) * (65 / foodImages.length)}%`,
-                  transform: 'translate(-50%, -50%)',
-                  width: '65px',
-                  height: '65px',
-                }}
-              />
-            ))}
+          {foodImages[round].map((src, idx) => (
+            <img
+              key={idx}
+              src={src}
+              style={{
+                position: "absolute",
+                top: "45%",
+                left: `${(idx + 1.1) * (65 / foodImages.length)}%`,
+                transform: "translate(-50%, -50%)",
+                width: "65px",
+                height: "65px",
+              }}
+            />
+          ))}
           {/* 화살표 */}
           <img
             className="arrow"
@@ -136,7 +163,7 @@ const Game = () => {
         </div>
 
         {/* 핸들 */}
-        <button className="handle" onClick={handleStop} disabled={!clickable} >
+        <button className="handle" onClick={handleStop} disabled={!clickable}>
           <img src="/assets/handle.png" alt="핸들" />
         </button>
       </div>
@@ -146,13 +173,13 @@ const Game = () => {
         <img className="cart" src="/assets/cart.png" alt="카트" />
         <div className="selected-foods">
           {selectedFoods.map((food, index) => (
-            <img 
+            <img
               key={`${food.name}-${index}`}
-              src={`/public/assets/food/round${index+1}/${food.name}.png`}
+              src={`/public/assets/food/round${index + 1}/${food.name}.png`}
               style={{
-                width: '50px',
-                height: '50px',
-                margin: '5px'
+                width: "50px",
+                height: "50px",
+                margin: "5px",
               }}
             />
           ))}

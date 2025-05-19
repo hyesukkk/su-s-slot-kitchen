@@ -1,0 +1,116 @@
+.Result {
+  width: 90vw;
+  aspect-ratio: 1 / 1;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  background-color: #fdf6dc;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 60px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.result-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+
+  flex: 1;
+  width: 100%;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.result-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.result-left .result-image {
+  width: 400px;
+  height: auto;
+}
+
+.score-section {
+  /* background-color: #f8d36b; */
+  background-color: #ffcc66;
+  color: #000;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 0px 40px;
+  border-radius: 12px;
+  margin-top: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.score-section h3 {
+  margin: 20px;
+}
+
+.result-right {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center; /* 가운데 정렬 */
+}
+
+.materials h3 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.material-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  background-color: #e9b682c6;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px; /* 내부 여백 추가 */
+  justify-content: center;
+}
+
+.material-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0; /* margin 제거 */
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 120px;
+  align-items: center;
+}
+
+.button-group button {
+  font-size: 30px;
+  background-color: #ffcc66;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.button-group button:hover {
+  background-color: #ffaa33; /* 호버 시 색상 변경 */
+  transform: translateY(-2px);
+}
