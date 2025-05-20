@@ -5,7 +5,7 @@ class food {
   }
 }
 
-const completeFoodList = ["ramen", "kimbap", "bibimbap", "hamburger", "bingsu"];
+const completeFoodList = ["ramen", "gimbap", "bibimbap", "burger", "bingsu"];
 const foodList = [
   new food("bread", [0, 0, 0, 1, 0.2]),
   new food("fish", [0.2, 0.4, 0.4, 0.2, 0]),
