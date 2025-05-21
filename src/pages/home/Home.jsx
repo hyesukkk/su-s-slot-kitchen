@@ -6,16 +6,41 @@ const Home = () => {
   const nav = useNavigate();
   const [isHowtoOpen, setIsHowtoOpen] = useState(false);
 
+  // ✅ 이 함수는 클릭한 순간마다 Audio 새로 만들어야 안전함
+  const playClickSound = () => {
+    const clickSound = new Audio("/assets/sound/click.mp3");
+    clickSound.volume = 0.6;
+    clickSound.play().catch((e) => {
+      console.warn("click.mp3 재생 실패:", e);
+    });
+  };
+
   return (
     <div className="Home">
       <section className="logo">
-        <img src={"/assets/main/logo.png"} alt="Logo" style={{ width: "350px", height: "auto" }} />
+        <img
+          src={"/assets/main/logo.png"}
+          alt="Logo"
+          style={{ width: "350px", height: "auto" }}
+        />
       </section>
       <section className="button_section">
-        <button className="start_button" onClick={() => nav("/game")}>
+        <button
+          className="start_button"
+          onClick={() => {
+            playClickSound(); // 🔈 사운드 재생
+            nav("/game");
+          }}
+        >
           게임시작
         </button>
-        <button className="howto_button" onClick={() => setIsHowtoOpen(true)}>
+        <button
+          className="howto_button"
+          onClick={() => {
+            playClickSound(); // 🔈 사운드 재생
+            setIsHowtoOpen(true);
+          }}
+        >
           게임방법
         </button>
       </section>
@@ -25,7 +50,10 @@ const Home = () => {
           <div className="howto_content">
             <button
               className="close_button"
-              onClick={() => setIsHowtoOpen(false)}
+              onClick={() => {
+                playClickSound(); // 🔈 사운드 재생
+                setIsHowtoOpen(false);
+              }}
             >
               X
             </button>
