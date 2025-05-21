@@ -14,7 +14,6 @@ const Result = () => {
   return (
     <div className="Result">
       <h1 className="title">음식 평가</h1>
-
       <div className="result-content">
         {/* 왼쪽 결과 이미지+점수 */}
         <div className="result-left">

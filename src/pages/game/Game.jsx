@@ -193,11 +193,11 @@ const Game = () => {
             <img
               key={`${food.name}-${index}`}
               src={`/public/assets/food/round${index + 1}/${food.name}.png`}
-              style={{
-                width: "70px",
-                height: "70px",
-                margin: "5px",
-              }}
+              // style={{
+              //   width: "70px",
+              //   height: "70px",
+              //   margin: "5px",
+              // }}
             />
           ))}
         </div>
