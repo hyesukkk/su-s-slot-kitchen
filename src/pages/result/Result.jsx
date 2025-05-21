@@ -11,6 +11,14 @@ const Result = () => {
   const score = location.state?.score ?? 0;
   const resultImage = `/assets/result/${resultFood}.png`;
 
+  const playClickSound = () => {
+    const clickSound = new Audio("/assets/sound/click.mp3");
+    clickSound.volume = 0.6;
+    clickSound.play().catch((e) => {
+      console.warn("click.mp3 재생 실패:", e);
+    });
+  };
+
   return (
     <div className="Result">
       <h1 className="title">음식 평가</h1>
@@ -40,8 +48,21 @@ const Result = () => {
           </div>
 
           <div className="button-group">
-            <button onClick={() => navigate("/")}>새 게임</button>
-            <button>랭킹 등록</button>
+            <button
+              onClick={() => {
+                playClickSound();
+                navigate("/");
+              }}
+            >
+              새 게임
+            </button>
+            <button
+              onClick={() => {
+                playClickSound();
+              }}
+            >
+              랭킹 등록
+            </button>
           </div>
         </div>
       </div>

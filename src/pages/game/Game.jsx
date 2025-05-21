@@ -6,6 +6,14 @@ import { calculateResult } from "../../constants/calculateResult";
 
 const Game = () => {
   const navigate = useNavigate();
+
+  const playClickSound = () => {
+    const clickSound = new Audio("/assets/sound/handle.mp3");
+    clickSound.volume = 0.6;
+    clickSound.play().catch((e) => {
+      console.warn("handle.mp3 재생 실패:", e);
+    });
+  };
   const foodImages = [
     Object.values(
       import.meta.glob("/public/assets/food/round1/*.png", {
@@ -178,7 +186,11 @@ const Game = () => {
         {/* 핸들 */}
         <button
           className="handle"
-          onClick={handleStop}
+          // onClick={handleStop}
+          onClick={() => {
+            playClickSound(); //사운드 재생
+            handleStop();
+          }}
           disabled={!clickable}
           ref={handleRef}
         >

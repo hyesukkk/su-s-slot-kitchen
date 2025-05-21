@@ -6,7 +6,6 @@ const Home = () => {
   const nav = useNavigate();
   const [isHowtoOpen, setIsHowtoOpen] = useState(false);
 
-  // ✅ 이 함수는 클릭한 순간마다 Audio 새로 만들어야 안전함
   const playClickSound = () => {
     const clickSound = new Audio("/assets/sound/click.mp3");
     clickSound.volume = 0.6;
