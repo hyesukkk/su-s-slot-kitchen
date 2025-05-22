@@ -51,7 +51,7 @@ const Result = () => {
             <button
               onClick={() => {
                 playClickSound();
-                navigate("/");
+                navigate("/Game");
               }}
             >
               새 게임
