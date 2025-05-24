@@ -77,7 +77,7 @@ const Game = () => {
           directionRef.current = 1;
           nextIndex = 1;
         }
-        updateArrowPosition(nextIndex); // 여기서 직접 업데이트
+        updateArrowPosition(nextIndex); // 업데이트
         return nextIndex;
       });
 
@@ -130,12 +130,11 @@ const Game = () => {
     if (!clickable) return;
     setClickable(false);
 
-    // 레버 살짝 움직이게 active 클래스 추가
     if (handleRef.current) {
       handleRef.current.classList.add("active");
       setTimeout(() => {
         handleRef.current.classList.remove("active");
-      }, 300); // 0.3초 뒤에 원래대로
+      }, 300);
     }
 
     setIsRunning(false);
@@ -154,7 +153,6 @@ const Game = () => {
   return (
     <div className="Game">
       <div className="slot-container">
-        {/* 슬롯박스만 감싸는 래퍼 */}
         <div className="slot-box-wrapper" ref={wrapperRef}>
           <img className="slot-box" src="/assets/slot_box.png" alt="슬롯박스" />
           {foodImages[round].map((src, idx) => (
@@ -188,7 +186,7 @@ const Game = () => {
           className="handle"
           // onClick={handleStop}
           onClick={() => {
-            playClickSound(); //사운드 재생
+            playClickSound();
             handleStop();
           }}
           disabled={!clickable}
@@ -205,11 +203,6 @@ const Game = () => {
             <img
               key={`${food.name}-${index}`}
               src={`/public/assets/food/round${index + 1}/${food.name}.png`}
-              // style={{
-              //   width: "70px",
-              //   height: "70px",
-              //   margin: "5px",
-              // }}
             />
           ))}
         </div>

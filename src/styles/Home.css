@@ -1,10 +1,6 @@
-/* 고정 화면 기반 Home.css */
-
 .Home {
-  position: relative;
-  width: 800px;
-  height: 800px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +13,7 @@
 
   box-sizing: border-box;
   overflow: hidden;
+  position: relative;
 }
 
 .Home .logo {

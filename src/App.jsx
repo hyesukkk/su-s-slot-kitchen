@@ -18,7 +18,6 @@ function App() {
         });
       }
     };
-    // document.addEventListener('click', soundClick, { once: true });
 
     // 사용자 인터랙션 이후 300ms 지연 후 재생 (다른 효과음 먼저 실행되게)
     document.addEventListener(

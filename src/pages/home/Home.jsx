@@ -27,7 +27,7 @@ const Home = () => {
         <button
           className="start_button"
           onClick={() => {
-            playClickSound(); // 🔈 사운드 재생
+            playClickSound();
             nav("/game");
           }}
         >
@@ -36,7 +36,7 @@ const Home = () => {
         <button
           className="howto_button"
           onClick={() => {
-            playClickSound(); // 🔈 사운드 재생
+            playClickSound();
             setIsHowtoOpen(true);
           }}
         >
@@ -50,7 +50,7 @@ const Home = () => {
             <button
               className="close_button"
               onClick={() => {
-                playClickSound(); // 🔈 사운드 재생
+                playClickSound();
                 setIsHowtoOpen(false);
               }}
             >

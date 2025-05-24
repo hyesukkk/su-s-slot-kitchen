@@ -1,9 +1,6 @@
-/* 고정 화면 기반 Result.css */
-
 .Result {
-  width: 800px;
-  height: 800px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   background-color: #fdf6dc;
   display: flex;
   flex-direction: column;

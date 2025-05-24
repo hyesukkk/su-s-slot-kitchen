@@ -13,9 +13,9 @@ const Result = () => {
     }
   }, [location, navigate]);
 
-  // Game.jsx에서 전달한 selectedFoods 받기
+  // selectedFoods 받기
   const selectedFoods = location.state?.selectedFoods ?? [];
-  const resultFood = location.state?.resultFood ?? "trash"; // 기본값은 쓰레기
+  const resultFood = location.state?.resultFood ?? "trash";
   const score = location.state?.score ?? 0;
   const resultImage = `/assets/result/${resultFood}.png`;
 
@@ -31,7 +31,6 @@ const Result = () => {
     <div className="Result">
       <h1 className="title">음식 평가</h1>
       <div className="result-content">
-        {/* 왼쪽 결과 이미지+점수 */}
         <div className="result-left">
           <img className="result-image" src={resultImage} alt={resultFood} />
           <div className="score-section">
@@ -39,7 +38,6 @@ const Result = () => {
           </div>
         </div>
 
-        {/* 오른쪽: 재료 + 버튼 */}
         <div className="result-right">
           <div className="materials">
             <h3>사용한 재료</h3>
