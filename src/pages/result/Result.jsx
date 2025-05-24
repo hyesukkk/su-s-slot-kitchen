@@ -1,9 +1,17 @@
 import "../../styles/Result.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Result = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    // 게임 데이터 없이 들어온 경우: 홈으로 강제 이동
+    if (!location.state || !location.state.selectedFoods) {
+      navigate("/", { replace: true });
+    }
+  }, [location, navigate]);
 
   // Game.jsx에서 전달한 selectedFoods 받기
   const selectedFoods = location.state?.selectedFoods ?? [];
