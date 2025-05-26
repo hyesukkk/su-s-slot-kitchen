@@ -133,7 +133,9 @@ const Game = () => {
     if (handleRef.current) {
       handleRef.current.classList.add("active");
       setTimeout(() => {
-        handleRef.current.classList.remove("active");
+        if (handleRef.current) {
+          handleRef.current.classList.remove("active");
+        }
       }, 300);
     }
 
@@ -142,7 +144,9 @@ const Game = () => {
     //음식 선택
     const selectedImage = foodImages[round][slotIndex];
     const selectedFood = findFoodObject(selectedImage);
-    setSelectedFoods((prev) => [...prev, selectedFood]);
+    if (selectedFood) {
+      setSelectedFoods((prev) => [...prev, selectedFood]);
+    }
     // 2초 뒤 다음 라운드로 변경
     setTimeout(() => {
       nextRound();
