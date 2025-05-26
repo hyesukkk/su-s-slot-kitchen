@@ -1,8 +1,9 @@
 import "../../styles/Result.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Result = () => {
+  const [isRankingtoOpen, setIsRankingtoOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,6 +29,7 @@ const Result = () => {
   };
 
   return (
+    
     <div className="Result">
       <h1 className="title">음식 평가</h1>
       <div className="result-content">
@@ -52,26 +54,52 @@ const Result = () => {
               ))}
             </div>
           </div>
-
           <div className="button-group">
+            <button onClick={() => {
+              playClickSound();
+              navigate("/");
+            }}>
+              처음으로
+            </button>
             <button
               onClick={() => {
                 playClickSound();
                 navigate("/Game");
               }}
             >
-              새 게임
+              다시하기
             </button>
             <button
               onClick={() => {
                 playClickSound();
+                setIsRankingtoOpen(true);
               }}
             >
-              랭킹 등록
+              랭킹등록
             </button>
           </div>
         </div>
       </div>
+      {isRankingtoOpen && (
+        <div className="Rankingto_modal">
+          <div className="Rankingto_content">
+            <button
+              className="close_button"
+              onClick={() => {
+                playClickSound();
+                setIsRankingtoOpen(false);
+              }}
+            >
+              X
+            </button>
+            <h2>랭킹 목록</h2>
+            <p>
+              하이여
+              <br />
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

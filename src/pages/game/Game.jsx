@@ -210,7 +210,10 @@ const Game = () => {
             />
           ))}
         </div>
+        <div   flex-direction: column>
         <img className="cart" src="/assets/cart.png" alt="카트" />
+        <img className="cat" src="/assets/cat.png" alt="고양이" />
+        </div>
       </div>
     </div>
   );
