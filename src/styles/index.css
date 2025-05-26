@@ -5,20 +5,31 @@
 
 html,
 body {
-  margin: 0px;
+  margin: 0;
+  padding: 0;
   width: 100%;
-  background-color: rgb(246, 246, 246);
+  min-height: 100vh;
+  background-color: rgb(39, 37, 37);
+  overflow: auto;
+  display: block;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 100px;
 }
 
 #root {
+  width: 800px;
+  height: 800px;
   background-color: white;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  max-height: 800px;
-  height: 100vh;
-  aspect-ratio: 1 / 1; /* 또는 height: width 와 같은 비율 유지 */
-  box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 20px 0px;
+  box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
+  flex-shrink: 0;
+  display: block;
 }
 
 body * {

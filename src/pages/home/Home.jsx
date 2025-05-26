@@ -6,16 +6,40 @@ const Home = () => {
   const nav = useNavigate();
   const [isHowtoOpen, setIsHowtoOpen] = useState(false);
 
+  const playClickSound = () => {
+    const clickSound = new Audio("/assets/sound/click.mp3");
+    clickSound.volume = 0.6;
+    clickSound.play().catch((e) => {
+      console.warn("click.mp3 재생 실패:", e);
+    });
+  };
+
   return (
     <div className="Home">
       <section className="logo">
-        <img src={"/assets/main/logo.png"} alt="Logo" style={{ width: "350px", height: "auto" }} />
+        <img
+          src={"/assets/main/logo.png"}
+          alt="Logo"
+          style={{ width: "350px", height: "auto" }}
+        />
       </section>
       <section className="button_section">
-        <button className="start_button" onClick={() => nav("/game")}>
+        <button
+          className="start_button"
+          onClick={() => {
+            playClickSound();
+            nav("/game");
+          }}
+        >
           게임시작
         </button>
-        <button className="howto_button" onClick={() => setIsHowtoOpen(true)}>
+        <button
+          className="howto_button"
+          onClick={() => {
+            playClickSound();
+            setIsHowtoOpen(true);
+          }}
+        >
           게임방법
         </button>
       </section>
@@ -25,7 +49,10 @@ const Home = () => {
           <div className="howto_content">
             <button
               className="close_button"
-              onClick={() => setIsHowtoOpen(false)}
+              onClick={() => {
+                playClickSound();
+                setIsHowtoOpen(false);
+              }}
             >
               X
             </button>
