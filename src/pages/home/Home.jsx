@@ -1,10 +1,33 @@
 import "../../styles/Home.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Home = () => {
   const nav = useNavigate();
   const [isHowtoOpen, setIsHowtoOpen] = useState(false);
+  const [bgm, setBgm] = useState(null);
+
+  const playBgm = () => {
+    // 기존 오디오 찾기 및 제거
+    if (window.bgm instanceof Audio) {
+      window.bgm.pause();
+      window.bgm.src = "";
+      window.bgm = null;
+    }
+
+    // 새로운 오디오 생성 및 재생
+    const newBgm = new Audio("/assets/sound/main.mp3");
+    newBgm.loop = true;
+    newBgm.volume = 0.5;
+    newBgm.play().catch((e) => {
+      console.warn("배경음악 재생 실패:", e);
+    });
+    window.bgm = newBgm;
+  };
+
+  useEffect(() => {
+    playBgm();
+  }, []);
 
   const playClickSound = () => {
     const clickSound = new Audio("/assets/sound/click.mp3");
@@ -28,6 +51,7 @@ const Home = () => {
           className="start_button"
           onClick={() => {
             playClickSound();
+            playBgm();
             nav("/game");
           }}
         >

@@ -14,7 +14,7 @@ export function calculateResult(selectedFoods) {
   const maxIndex = scores.indexOf(maxScore);
 
   const isPerfect = maxScore === selectedFoods.length;
-  const resultFood = isPerfect ? completeFoodList[maxIndex] : "trash";
+  const resultFood = completeFoodList[maxIndex] ;
 
   const score =
     selectedFoods.length > 0
