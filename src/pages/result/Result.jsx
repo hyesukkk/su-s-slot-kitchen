@@ -1,6 +1,8 @@
 import "../../styles/Result.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { postRanking, getRankingList } from "../result/ranking";
+import { RankingModal } from "../result/ranking_model";
 
 const Result = () => {
   const [isRankingtoOpen, setIsRankingtoOpen] = useState(false);
@@ -18,7 +20,8 @@ const Result = () => {
   const selectedFoods = location.state?.selectedFoods ?? [];
   const resultFood = location.state?.resultFood ?? "trash";
   const score = location.state?.score ?? 0;
-  const resultImage = `/assets/result/${resultFood}.png`;
+  const resultFoodImgName = (location.state?.resultFood|| score!=100)?"trash":resultFood;
+  const resultImage = `/assets/result/${resultFoodImgName}.png`;
 
   const playClickSound = () => {
     const clickSound = new Audio("/assets/sound/click.mp3");
@@ -34,7 +37,7 @@ const Result = () => {
       <h1 className="title">음식 평가</h1>
       <div className="result-content">
         <div className="result-left">
-          <img className="result-image" src={resultImage} alt={resultFood} />
+          <img className="result-image" src={resultImage} alt={resultFoodImgName} />
           <div className="score-section">
             <h3>점수: {score}</h3>
           </div>
@@ -81,25 +84,13 @@ const Result = () => {
         </div>
       </div>
       {isRankingtoOpen && (
-        <div className="Rankingto_modal">
-          <div className="Rankingto_content">
-            <button
-              className="close_button"
-              onClick={() => {
-                playClickSound();
-                setIsRankingtoOpen(false);
-              }}
-            >
-              X
-            </button>
-            <h2>랭킹 목록</h2>
-            <p>
-              하이여
-              <br />
-            </p>
-          </div>
-        </div>
-      )}
+  <RankingModal
+    score={score}
+    food={location.state.resultFood}
+    onClose={() => setIsRankingtoOpen(false)}
+    playClickSound={playClickSound}
+  />
+)}
     </div>
   );
 };
