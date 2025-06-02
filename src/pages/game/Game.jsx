@@ -6,14 +6,6 @@ import { calculateResult } from "../../constants/calculateResult";
 
 const Game = () => {
   const navigate = useNavigate();
-
-  const playClickSound = () => {
-    const clickSound = new Audio("/assets/sound/handle.mp3");
-    clickSound.volume = 0.6;
-    clickSound.play().catch((e) => {
-      console.warn("handle.mp3 재생 실패:", e);
-    });
-  };
   const foodImages = [
     Object.values(
       import.meta.glob("/public/assets/food/round1/*.png", {
@@ -46,14 +38,22 @@ const Game = () => {
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [clickable, setClickable] = useState(true); // 버튼 클릭 가능 여부
 
+  const slotIndexRef = useRef(0);
   const wrapperRef = useRef(null);
-
   const animationRef = useRef(null); // requestAnimationFrame ID
   const timeoutRef = useRef(null); // setTimeout ID
   const directionRef = useRef(1); // 1: 오른쪽, -1: 왼쪽
 
   const [arrowLeft, setArrowLeft] = useState("0px");
   const handleRef = useRef(null);
+
+  const playClickSound = () => {
+    const clickSound = new Audio("/assets/sound/handle.mp3");
+    clickSound.volume = 0.6;
+    clickSound.play().catch((e) => {
+      console.warn("handle.mp3 재생 실패:", e);
+    });
+  };
 
   useEffect(() => {
     const updateArrowPosition = (index) => {
@@ -77,6 +77,7 @@ const Game = () => {
           directionRef.current = 1;
           nextIndex = 1;
         }
+        slotIndexRef.current = nextIndex;
         updateArrowPosition(nextIndex); // 업데이트
         return nextIndex;
       });
@@ -100,7 +101,8 @@ const Game = () => {
 
   const nextRound = () => {
     if (round === 3) {
-      const selectedImage = foodImages[round][slotIndex];
+      const selectedIndex = slotIndex;
+      const selectedImage = foodImages[round][selectedIndex];
       const selectedFood = findFoodObject(selectedImage);
       const updatedFoods = [...selectedFoods, selectedFood];
 
@@ -130,19 +132,17 @@ const Game = () => {
     if (!clickable) return;
     setClickable(false);
 
-    if (handleRef.current) {
-      handleRef.current.classList.add("active");
-      setTimeout(() => {
-        if (handleRef.current) {
-          handleRef.current.classList.remove("active");
-        }
-      }, 300);
-    }
+    handleRef.current.classList.add("active");
+    setTimeout(() => {
+      if (handleRef.current) {
+        handleRef.current.classList.remove("active");
+      }
+    }, 300);
 
     setIsRunning(false);
 
     //음식 선택
-    const selectedImage = foodImages[round][slotIndex];
+    const selectedImage = foodImages[round][slotIndexRef.current];
     const selectedFood = findFoodObject(selectedImage);
     if (selectedFood) {
       setSelectedFoods((prev) => [...prev, selectedFood]);
@@ -210,9 +210,8 @@ const Game = () => {
             />
           ))}
         </div>
-        <div   flex-direction: column>
-        <img className="cart" src="/assets/cart.png" alt="카트" />
-        <img className="cat" src="/assets/cat.png" alt="고양이" />
+        <div flex-direction:column>
+          <img className="cart" src="/assets/cart.png" alt="카트" />
         </div>
       </div>
     </div>

@@ -20,7 +20,8 @@ const Result = () => {
   const selectedFoods = location.state?.selectedFoods ?? [];
   const resultFood = location.state?.resultFood ?? "trash";
   const score = location.state?.score ?? 0;
-  const resultFoodImgName = (location.state?.resultFood|| score!=100)?"trash":resultFood;
+  const resultFoodImgName =
+    location.state?.resultFood || score != 100 ? "trash" : resultFood;
   const resultImage = `/assets/result/${resultFoodImgName}.png`;
 
   const playClickSound = () => {
@@ -32,12 +33,15 @@ const Result = () => {
   };
 
   return (
-    
     <div className="Result">
       <h1 className="title">음식 평가</h1>
       <div className="result-content">
         <div className="result-left">
-          <img className="result-image" src={resultImage} alt={resultFoodImgName} />
+          <img
+            className="result-image"
+            src={resultImage}
+            alt={resultFoodImgName}
+          />
           <div className="score-section">
             <h3>점수: {score}</h3>
           </div>
@@ -58,10 +62,12 @@ const Result = () => {
             </div>
           </div>
           <div className="button-group">
-            <button onClick={() => {
-              playClickSound();
-              navigate("/");
-            }}>
+            <button
+              onClick={() => {
+                playClickSound();
+                navigate("/");
+              }}
+            >
               처음으로
             </button>
             <button
@@ -84,13 +90,13 @@ const Result = () => {
         </div>
       </div>
       {isRankingtoOpen && (
-  <RankingModal
-    score={score}
-    food={location.state.resultFood}
-    onClose={() => setIsRankingtoOpen(false)}
-    playClickSound={playClickSound}
-  />
-)}
+        <RankingModal
+          score={score}
+          food={location.state.resultFood}
+          onClose={() => setIsRankingtoOpen(false)}
+          playClickSound={playClickSound}
+        />
+      )}
     </div>
   );
 };

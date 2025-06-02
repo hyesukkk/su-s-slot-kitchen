@@ -30,8 +30,19 @@ body {
   box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
   flex-shrink: 0;
   display: block;
+  margin-top: 100px;
 }
 
 body * {
   font-family: "온글잎류뚱체";
+}
+
+.outside-banner {
+  position: absolute;
+  width: 800px;
+  top: 20px;
+  color: white;
+  font-size: 20px;
+  z-index: 1000;
+  pointer-events: none; /* 클릭 방해 방지 */
 }
