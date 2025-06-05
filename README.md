@@ -1,12 +1,63 @@
-# React + Vite
+# 🎰 수의 음식머신
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**"모두의 이름에 '수'가 들어가서 탄생한, 수의 음식머신!"**
 
-Currently, two official plugins are available:
+슬롯머신 기반의 요리 게임, **수의 음식머신**은 사용자가 슬롯 레버를 클릭해 재료를 선택하고, 선택된 재료로 요리를 완성해 점수를 획득하는 플래시 게임입니다.
+<center>
+<img width="300" alt="스크린샷 2025-06-05 오후 2 16 36" src="https://github.com/user-attachments/assets/516ff5cc-1405-45ca-8616-072a26d190c9" />
+<img width="300" alt="스크린샷 2025-06-05 오후 2 16 46" src="https://github.com/user-attachments/assets/bf2a7c1c-6363-447e-bf60-71cfb6b6b5b4" />
+<img width="300" alt="스크린샷 2025-06-05 오후 2 16 52" src="https://github.com/user-attachments/assets/20b08cb6-4702-43d5-876c-ba55fd9bcb11" />
+</center>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 프로젝트 소개
 
-## Expanding the ESLint configuration
+- **게임 방식**: 슬롯머신 방식으로 재료를 랜덤 선택 → 조합 결과에 따라 점수 획득
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ 사용 기술 스택
+
+| 영역         | 기술          |
+|--------------|---------------|
+| 디자인       | Figma         |
+| 프론트엔드   | React         |
+| 백엔드       | Node.js       |
+| 데이터베이스 | MySQL         |
+
+
+---
+
+## 🎮 주요 기능
+
+- 총 **4개의 스테이지**로 구성된 슬롯머신
+- 버튼 클릭 시 슬롯 정지 및 **재료 선택**
+- **선택된 재료 조합 → 레시피와의 일치 여부에 따라 점수 계산**
+- 성공/실패에 따라 **시각적 피드백 제공**
+- **게임 종료 후 이름과 점수를 입력하여 DB에 저장**
+- 랭킹 게시판에서 **다른 사용자 점수 확인 가능**
+
+---
+
+## 🔎 핵심 로직 설명
+
+- 총 5개의 완성 메뉴: `라면`, `김밥`, `비빔밥`, `햄버거`, `빙수`
+- 각 하위 재료에 대해 **완성 메뉴와의 연관도를 배열로 선언**
+- 사용자가 선택한 재료들을 각 메뉴 기준으로 **점수화하여 최댓값 메뉴 선택**
+- 결과 화면에 **완성 메뉴 및 점수 출력**
+- 랭킹 등록 시 **이름, 점수, 선택된 메뉴 등의 정보를 DB에 저장**
+
+---
+
+## 🚀 향후 발전 방향
+
+- **레시피북** 기능 추가 → 사용자가 조합 방법을 쉽게 이해
+- **커스터마이징 요소** 도입 → 사용자가 직접 재료 추가 가능
+- **멀티플레이 기능** → 다른 사용자와 함께 플레이
+- **점수 공유 기능** → 소셜 미디어 등을 통한 점수 공유
+
+## 👨‍👩‍👧‍👦 팀원 소개
+
+| 이름     | 역할             |
+|----------|------------------|
+| [김혜수](https://github.com/hyesukkk) | 메인 프론트엔드 개발  |
+| [김수인](https://github.com/lsuinl) | 백엔드 개발 & 서브 프론트엔드 개발 |
